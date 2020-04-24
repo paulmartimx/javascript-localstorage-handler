@@ -27,13 +27,15 @@
         /**
          * @method get
          * @param key {String} Item key
+         * @param def_val {String|Object} Default Value
          * @return {String|Object|Null}
          */
-        this.get = function(key) {
+        this.get = function(key, def_val) {
+            def_val = (typeof def_val === 'undefined') ? null : def_val;
             try {
-                return JSON.parse(_ls.getItem(key));
+                return JSON.parse(_ls.getItem(key)) || def_val;
             } catch(e) {
-                return _ls.getItem(key);
+                return _ls.getItem(key) || def_val;
             }
         };
 
